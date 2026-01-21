@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gas Sales Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div style="font-size: 20px; margin: none;
+    padding: none; font-weight: bolder;">VIX</div>
+    <h1 style="margin: 0;">🔥 Gas Sales Manager</h1>
+    <p style="padding: 0; margin: 0;">Fast • Accurate • Offline</p>
+  </header>
+
+  <main class="container">
+
+   <!-- Menu Icon -->
+    <div id="menuBtn">☰</div>
+
+
+    <!-- Slide Menu -->
+    <div id="sideMenu" class="hidden">
+    <h3>⚙ Settings</h3>
+
+    <div class="menu-item">
+        <label>Set Price (₦)</label>
+        <input type="number" id="menuPrice" placeholder="e.g 800">
+        <button id="savePrice">Save Price</button>
+    </div>
+
+    <div class="menu-item">
+        <label>Item Type</label>
+        <select id="itemType">
+          <option value="">-- Select Item --</option>
+          <option value="gas">🔥 Gas (KG)</option>
+          <option value="egg">🥚 Egg (Crates)</option>
+          <option value="water">💧 Water (Packs)</option>
+        </select>
+    </div>
+    <div class="menu-item">
+        <label>Set Default Qty (KG, pack or crates)</label>
+        <input type="number" id="menuQty" placeholder="e.g 4.2">
+    </div>
+    <div class="menu-item">
+        <button id="saveItemSettings" style="width: 100%; background-color: #0066ff;">Save Item Settings</button>
+    </div>
+</div>
+
+<!-- Menu Overlay -->
+    <div id="menuOverlay" class="hidden"></div>
+
+    <!-- Gas Price -->
+    <div class="card">
+      <label>Gas Price per KG (₦)</label>
+      <input type="number" id="pricePerKg" value="" readonly>
+    </div>
+    <div class="card">
+      <select name="" id="paymentType">
+        <option value="">-- Payment Type --</option>
+        <option value="cash">Cash</option>
+        <option value="transfer">Transfer</option>
+        <option value="pos">POS</option>
+      </select>
+    </div>
+
+    <!-- Quantity -->
+    <div class="card">
+      <label id="qtyLabel">Gas Qty Sold (KG)</label>
+      <input type="number" id="qtySold" placeholder="e.g 4.2">
+    </div>
+
+    <!-- Stock Display -->
+    <div class="card" style="background-color: #f0f8ff; border-left: 4px solid #2196F3;">
+      <p><strong id="stockLabel">Remaining Gas:</strong> <span id="remainingQty">0</span> <span id="remainingUnit">KG</span></p>
+    </div>
+
+    <!-- Calculate -->
+    <button class="btn-calc" id="calculate">Calculate</button>
+
+    <!-- Result -->
+    <div class="result">
+      <h2>Total Amount</h2>
+      <span id="totalAmount">₦0</span>
+    </div>
+
+    <!-- Save -->
+    <button class="btn-save" id="saveSale">Save Sale</button>
+
+    <!-- Daily Profit -->
+    <div class="card" style="background-color: #e8f5e9; border-left: 4px solid #4CAF50;">
+      <h3>Daily Profit</h3>
+      <div id="dailyProfitContainer">
+        <p><strong>Today's Sales:</strong> <span id="todayTotalSales">₦0</span></p>
+        <p><strong>Today's Expenses:</strong> <span id="todayTotalExpenses">₦0</span></p>
+        <p><strong>Today's Qty:</strong> <span id="todayTotalQty">0</span> </p>
+        <p style="font-size: 1.2rem; color: #4CAF50;"><strong>Net Profit:</strong> <span id="netProfit">₦0</span></p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Sales View Buttons -->
+<div class="sales-buttons">
+  <button id="btnToday">Today's Sales</button>
+  <button id="btnMonth">This Month's Sales</button>
+  <button id="btnYear">This Year's Sales</button>
+  <button id="btnExpenses">Expenses</button>
+</div>
+
+<!-- Payment Info Buttons -->
+<div class="sales-buttons">
+  <button id="btnCashInfo">💵 Cash Info</button>
+  <button id="btnTransferInfo">💳 Transfer Info</button>
+  <button id="btnPosInfo">🖥️ POS Info</button>
+</div>
+
+<div class="sales-buttons">
+<button style="background: #00b894;" id="btnHistory">
+  📅 History</button>
+</div>
+
+<!-- Full-Screen Sales List Overlay -->
+<div id="salesOverlay" class="hidden">
+  <div class="overlayHeader">
+    <button id="closeSalesOverlay">← Back</button>
+    <h2 id="overlayTitle">Sales</h2>
+  </div>
+
+  <!-- Total for the period -->
+  <div id="overlayTotal" style="font-weight:bold; margin-bottom:1rem;">Total: ₦0</div>
+
+  <div id="salesOverlayList">
+    <!-- Sales items will be appended here dynamically -->
+  </div>  
+</div>
+
+  <footer>
+    <small>Offline VIX Sales App</small>
+  </footer>
+
+  <script type="module" src="calculate.js"></script>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="userType.js"></script>
+  <script type="module" src="menuLog.js"></script>
+  <script type="module" src="price.js"></script>
+  <script type="module" src="setting.js"></script>
+  <!-- <script type="module" src="getTodaySales.js"></script> -->
+  <!-- <script type="module" src="salesDate.js"></script> -->
+  <script type="module" src="deleteSales.js"></script>
+  <script type="module" src="totalSales.js"></script>
+  <script type="module" src="history.js"></script>
+  <script type="module" src="expenses.js"></script>
+  <script type="module" src="dailyProfit.js"></script>
+  <script type="module" src="paymentInfo.js"></script>
+</body>
+</html>
