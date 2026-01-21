@@ -72,15 +72,29 @@ function showExpensesList() {
         const bgColor = expense.paymentType === 'cash' ? '#fff3cd' : expense.paymentType === 'transfer' ? '#cfe2ff' : '#e7f3ff';
         const textColor = expense.paymentType === 'cash' ? '#856404' : '#084298';
         div.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <span style="font-size: 0.9rem; color: #666;">${expense.date} ${expense.time}</span>
-            <span style="background-color: ${bgColor}; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: ${textColor};">${paymentBadge}</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-weight: 500;">${expense.reason}</span>
-            <span style="color: #f44336; font-weight: bold; font-size: 1.1rem;">₦${expense.amount.toLocaleString()}</span>
-          </div>
-        `;
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+    <span style="font-size: 0.9rem; color: #666;">
+      ${expense.date}
+    </span>
+    <span style="background-color: ${bgColor}; padding: 0.3rem 0.8rem; 
+    border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: ${textColor};">
+      ${paymentBadge}
+    </span>
+  </div>
+
+  <div style="display: flex; justify-content: space-between;">
+    <span style="font-weight: 500;">${expense.reason}</span> <span style="color: #f44336; font-weight: bold;">
+      ₦${expense.amount.toLocaleString()}
+    </span>
+  </div>
+
+  <button 
+    style="margin-top: 0.5rem; width: 80px; background: #e53935; 
+    color: white; border: none; padding: 0.5rem; border-radius: 4px; cursor: pointer;"
+    onclick="deleteExpense(${expense.id})">
+    🗑 Delete
+  </button>
+`;
         salesOverlayList.appendChild(div);
       });
     }
@@ -170,5 +184,23 @@ function submitExpense() {
   
   tx.onerror = () => {
     alert('Error saving expense');
+  };
+}
+
+//code to delete expense
+window.deleteExpense = function(id) {
+  if (!confirm('Are you sure you want to delete this expense?')) {
+    return;
+  }
+  const tx = db.transaction('expense', 'readwrite');
+  const store = tx.objectStore('expense');
+  store.delete(id);
+  tx.oncomplete = () => {
+    alert('Expense deleted successfully');
+    showExpensesList();
+    refreshDailyProfit(); // Refresh the daily profit display
+  };
+  tx.onerror = () => {
+    alert('Error deleting expense');
   };
 }

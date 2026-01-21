@@ -1,5 +1,5 @@
 export const DB_NAME = 'gasSalesDB';
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 let db;
 
@@ -37,6 +37,18 @@ function openDatabase() {
       if (!db.objectStoreNames.contains('fixprice')) {
         const fixPriceStore = db.createObjectStore('fixprice', { keyPath: 'key' });
       }
+
+      // Creditors store
+      if (!db.objectStoreNames.contains('creditors')) {
+        const creditorStore = db.createObjectStore('creditors', {
+          keyPath: 'id',
+          autoIncrement: true
+        });
+
+        creditorStore.createIndex('name', 'name', { unique: false });
+        creditorStore.createIndex('timestamp', 'timestamp', { unique: false });
+      }
+
 
       // Settings store
       if (!db.objectStoreNames.contains('settings')) {
