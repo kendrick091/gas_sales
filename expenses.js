@@ -168,6 +168,7 @@ function submitExpense() {
     day: now.getDate(),
     date: now.toLocaleDateString(),
     dateString: now.toISOString().split('T')[0], // "2026-01-20"
+    time: now.toLocaleTimeString(),
     timestamp: now.getTime()
   };
   

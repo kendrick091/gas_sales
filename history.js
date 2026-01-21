@@ -272,7 +272,9 @@ function displayHistoryResults(sales, expenses, periodLabel) {
                 <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Total Sales</p>
                 <p style="margin: 0.5rem 0 0 0; font-size: 1.5rem; font-weight: bold;">₦${totalSales.toLocaleString()}</p>
             </div>
-            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 1.5rem; border-radius: 12px; color: white; box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);">
+            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+            padding: 1.5rem; border-radius: 12px; color: white; 
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);">
                 <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Total Expenses</p>
                 <p style="margin: 0.5rem 0 0 0; font-size: 1.5rem; font-weight: bold;">₦${totalExpenses.toLocaleString()}</p>
             </div>
