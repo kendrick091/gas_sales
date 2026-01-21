@@ -15,6 +15,7 @@ request.onerror = () => {
 request.onsuccess = (event) => {
     db = event.target.result;
     calculateDailyProfit(); // Calculate on page load
+    refreshAllTimeProfit(); // Calculate all-time profit on load
 }
 
 function calculateDailyProfit() {
@@ -68,3 +69,36 @@ function calculateDailyProfit() {
 export function refreshDailyProfit() {
     calculateDailyProfit();
 }
+
+// All time profit calculation can be added similarly if needed
+export function refreshAllTimeProfit() {
+  if (!db) return;
+
+  let totalSales = 0;
+  let totalExpenses = 0;
+
+  const salesTx = db.transaction('sales', 'readonly');
+  const salesStore = salesTx.objectStore('sales');
+
+  salesStore.getAll().onsuccess = (e) => {
+    const sales = e.target.result || [];
+    totalSales = sales.reduce((sum, s) => sum + Number(s.totalAmount || 0), 0);
+
+    const expenseTx = db.transaction('expense', 'readonly');
+    const expenseStore = expenseTx.objectStore('expense');
+
+    expenseStore.getAll().onsuccess = (e2) => {
+      const expenses = e2.target.result || [];
+      totalExpenses = expenses.reduce((sum, ex) => sum + Number(ex.amount || 0), 0);
+
+      const profit = totalSales - totalExpenses;
+
+      const el = document.getElementById('allTimeProfit');
+      if (el) {
+        el.textContent = `₦${profit.toLocaleString()}`;
+        el.style.color = profit >= 0 ? '#2e7d32' : '#c62828';
+      }
+    };
+  };
+}
+

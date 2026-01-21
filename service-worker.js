@@ -1,4 +1,4 @@
-const CACHE_NAME = "gas-sales-cache-v7";
+const CACHE_NAME = "gas-sales-cache-v6";
 
 const FILES_TO_CACHE = [
   "./",
@@ -7,6 +7,8 @@ const FILES_TO_CACHE = [
   "./app.js",
   "./calculate.js",
   "./menuLog.js",
+  "./creditors.js",
+  "./monthlyProfitGraph.js",
   "./price.js",
   "./setting.js",
     "./userType.js",

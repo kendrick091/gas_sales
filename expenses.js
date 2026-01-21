@@ -1,5 +1,5 @@
 import { DB_NAME, DB_VERSION } from "./app.js";
-import { refreshDailyProfit } from "./dailyProfit.js";
+import { refreshDailyProfit, refreshAllTimeProfit } from "./dailyProfit.js";
 
 let db;
 
@@ -180,6 +180,7 @@ function submitExpense() {
     document.getElementById('expenseAmount').value = '';
     salesOverlay.classList.add('hidden');
     refreshDailyProfit(); // Refresh the daily profit display
+    refreshAllTimeProfit(); // Refresh the all-time profit display
   };
   
   tx.onerror = () => {
@@ -199,6 +200,7 @@ window.deleteExpense = function(id) {
     alert('Expense deleted successfully');
     showExpensesList();
     refreshDailyProfit(); // Refresh the daily profit display
+    refreshAllTimeProfit(); // Refresh the all-time profit display
   };
   tx.onerror = () => {
     alert('Error deleting expense');

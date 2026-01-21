@@ -1,5 +1,5 @@
 import { DB_NAME, DB_VERSION } from "./app.js";
-import { refreshDailyProfit } from "./dailyProfit.js";
+import { refreshDailyProfit, refreshAllTimeProfit } from "./dailyProfit.js";
 import { getCurrentUnit, updateStockDisplay } from "./userType.js";
 
 let db;
@@ -144,6 +144,7 @@ const saleRecord = {
       };
       
       refreshDailyProfit(); // Refresh the daily profit display
+      refreshAllTimeProfit(); // Refresh the all-time profit display
     };
     request.onerror = () => {
       alert('Error saving sale record.');

@@ -99,7 +99,14 @@
         <p><strong>Today's Sales:</strong> <span id="todayTotalSales">₦0</span></p>
         <p><strong>Today's Expenses:</strong> <span id="todayTotalExpenses">₦0</span></p>
         <p><strong>Today's Qty:</strong> <span id="todayTotalQty">0</span> </p>
-        <p style="font-size: 1.2rem; color: #4CAF50;"><strong>Net Profit:</strong> <span id="netProfit">₦0</span></p>
+        <p style="font-size: 1.2rem; color: #4CAF50;"><strong>Net Profit:</strong> 
+          <span id="netProfit">₦0</span></p>
+        <hr style="margin: 1rem 0">
+
+        <p style="font-size:1.1rem">
+          <strong>All-Time Profit:</strong>
+          <span id="allTimeProfit" style="color:#2e7d32">₦0</span>
+        </p>
       </div>
     </div>
 
@@ -120,10 +127,29 @@
   <button id="btnPosInfo">🖥️ POS Info</button>
   <button id="btnCreditors">📒 Creditors</button>
 </div>
+<!-- Graph and History Buttons -->
+<div class="sales-buttons">
+  <button id="btnMonthlyGraph">📊 Monthly Profit</button>
+</div>
 
 <div class="sales-buttons">
 <button style="background: #00b894;" id="btnHistory">
   📅 History</button>
+</div>
+
+
+<!-- Monthly Profit Graph Overlay -->
+<div id="monthlyGraphOverlay" class="hidden">
+  <div class="overlayHeader" style="display:flex;align-items:center;gap:1rem">
+  <button id="closeMonthlyGraph">← Back</button>
+
+  <button id="prevYear">◀</button>
+  <h2 id="graphYear" style="margin:0">2026</h2>
+  <button id="nextYear">▶</button>
+</div>
+
+
+  <canvas id="monthlyProfitChart" height="300"></canvas>
 </div>
 
 <!-- Full-Screen Sales List Overlay -->
@@ -158,6 +184,7 @@
   <script type="module" src="dailyProfit.js"></script>
   <script type="module" src="paymentInfo.js"></script>
   <script type="module" src="creditors.js"></script>
+  <script type="module" src="monthlyProfitGraph.js"></script>
   <script type="module" src="install.js"></script>
 </body>
 </html>

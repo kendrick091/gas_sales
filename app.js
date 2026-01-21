@@ -4,7 +4,7 @@ export const DB_VERSION = 2;
 let db;
 
 // 1️⃣ Open / Create Database
-function openDatabase() {
+export function openDatabase() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
 

@@ -263,6 +263,25 @@ input, select {
   border-bottom: 1px solid #ddd;
 }
 
+/* graph for monthly profit */
+#monthlyGraphOverlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 9999;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+body.dark #monthlyGraphOverlay {
+  background: #121212;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+
 footer {
   text-align: center;
   padding: 1rem;
